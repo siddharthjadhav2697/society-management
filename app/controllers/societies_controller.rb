@@ -39,7 +39,7 @@ class SocietiesController < ApplicationController
   def destroy
     @society = Society.find(params[:id])
     @society.destroy
-    redirect_to societies_url, notice: 'Society was successfully destroyed.'
+    render json: 'Society was successfully destroyed.'
   end
 
   private
