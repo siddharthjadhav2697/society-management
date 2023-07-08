@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_07_08_072819) do
+ActiveRecord::Schema.define(version: 2023_07_08_173102) do
 
   create_table "buildings", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
@@ -22,6 +22,23 @@ ActiveRecord::Schema.define(version: 2023_07_08_072819) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["society_id"], name: "index_buildings_on_society_id"
+  end
+
+  create_table "residents", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.string "email"
+    t.string "gender"
+    t.bigint "age"
+    t.bigint "phone_number"
+    t.bigint "room_number"
+    t.bigint "floor_number"
+    t.bigint "society_id", null: false
+    t.bigint "building_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["building_id"], name: "index_residents_on_building_id"
+    t.index ["society_id"], name: "index_residents_on_society_id"
   end
 
   create_table "societies", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -37,4 +54,6 @@ ActiveRecord::Schema.define(version: 2023_07_08_072819) do
   end
 
   add_foreign_key "buildings", "societies"
+  add_foreign_key "residents", "buildings"
+  add_foreign_key "residents", "societies"
 end

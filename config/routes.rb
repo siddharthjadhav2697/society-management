@@ -3,4 +3,5 @@ Rails.application.routes.draw do
   root to: 'societies#index'
   resources :societies
   resources :buildings
+  resources :residents
 end
