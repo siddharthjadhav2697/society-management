@@ -10,7 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_07_08_055652) do
+ActiveRecord::Schema.define(version: 2023_07_08_072819) do
+
+  create_table "buildings", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "name"
+    t.string "building_id"
+    t.bigint "floor_count"
+    t.bigint "room_count"
+    t.bigint "no_of_residents"
+    t.bigint "society_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["society_id"], name: "index_buildings_on_society_id"
+  end
 
   create_table "societies", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
@@ -24,4 +36,5 @@ ActiveRecord::Schema.define(version: 2023_07_08_055652) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "buildings", "societies"
 end
