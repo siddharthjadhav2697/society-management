@@ -4,4 +4,5 @@ Rails.application.routes.draw do
   resources :societies
   resources :buildings
   resources :residents
+  resources :visitors
 end
